@@ -51,20 +51,21 @@ export default function App() {
           shadows="soft" // Soft shadows für bessere Performance
           performance={{ min: 0.5 }} // Adaptive Performance-Degradation
         >
-          <ScrollControls 
-            pages={PAGES} 
+          <ScrollControls
+            pages={PAGES}
             damping={0.25}
             distance={1}
+            snap={{ mass: 0.2, tension: 100, friction: 20 }}
           >
             {/* 2. HIER IST DER FIX: Suspense wickelt alles ein */}
             <Suspense fallback={null}>
-              <Experience 
+              <Experience
                 onProgressChange={setScrollProgress}
                 onSectionChange={setCurrentSection}
               />
-              
+
               <Scroll html>
-                <HtmlContent />
+                <HtmlContent currentSection={currentSection} />
               </Scroll>
             </Suspense>
 

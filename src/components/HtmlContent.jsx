@@ -1,6 +1,20 @@
 import React from 'react'
 
-export default function HtmlContent() {
+export default function HtmlContent({ currentSection }) {
+  // Animation-Styles für die System-Diagnose (Sektion 10 = Index 9)
+  const diagnoseActive = currentSection === 9
+  const diagnoseStyle = {
+    maxWidth: '650px',
+    background: 'rgba(20, 10, 10, 0.98)',
+    border: '2px solid rgba(239, 68, 68, 0.5)',
+    boxShadow: '0 0 40px rgba(239, 68, 68, 0.15), inset 0 0 60px rgba(0, 0, 0, 0.5)',
+    fontFamily: 'monospace',
+    // Pop-Up Animation
+    transform: diagnoseActive ? 'scale(1)' : 'scale(0.8)',
+    opacity: diagnoseActive ? 1 : 0,
+    transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out',
+  }
+
   return (
     <div className="scroll-container" style={{ width: '100vw' }}>
       
@@ -425,13 +439,7 @@ export default function HtmlContent() {
 
       {/* ═══════ SEKTION 10: SYSTEM-DIAGNOSE (Forschungslücken) ═══════ */}
       <section className="section" style={{ height: '100vh' }}>
-        <div className="content-card content-card--left" style={{
-          maxWidth: '650px',
-          background: 'rgba(20, 10, 10, 0.98)',
-          border: '2px solid rgba(239, 68, 68, 0.5)',
-          boxShadow: '0 0 40px rgba(239, 68, 68, 0.15), inset 0 0 60px rgba(0, 0, 0, 0.5)',
-          fontFamily: 'monospace'
-        }}>
+        <div className="content-card content-card--center" style={diagnoseStyle}>
           {/* Warning Header */}
           <div style={{
             display: 'flex',

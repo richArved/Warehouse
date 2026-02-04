@@ -60,13 +60,21 @@ export default function Experience({ onSectionChange }) {
       ambient: 0.8, fog: { near: 20, far: 70 }, fogColor: '#081510'
     },
     // AKT 3: DIE ERKENNTNIS
-    { 
+    {
       pos: [0, 3, -32], target: [0, 2, -38],
       ambient: 0.6, fog: { near: 15, far: 50 }, fogColor: '#0a0a0f'
     },
-    { 
-      pos: [0, 6, -20], target: [0, 0, -25],
-      ambient: 0.7, fog: { near: 25, far: 80 }, fogColor: '#080a12'
+    {
+      pos: [-6, 4, -28], target: [0, 1, -32],
+      ambient: 0.65, fog: { near: 18, far: 55 }, fogColor: '#0f0a0a'
+    },
+    {
+      pos: [5, 3, -30], target: [0, 1.5, -35],
+      ambient: 0.7, fog: { near: 20, far: 60 }, fogColor: '#0a0a12'
+    },
+    {
+      pos: [0, 8, -25], target: [0, 0, -30],
+      ambient: 0.8, fog: { near: 25, far: 80 }, fogColor: '#080a12'
     },
   ], [])
 
