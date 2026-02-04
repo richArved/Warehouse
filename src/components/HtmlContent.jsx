@@ -52,7 +52,8 @@ export default function HtmlContent({ currentSection }) {
             fontStyle: 'italic'
           }}>
             "Wie können IoT-gestützte Smart Warehouses die Qualität und Nachhaltigkeit 
-            von Logistik-Dienstleistungen verbessern?"
+            von Logistik-Dienstleistungen verbessern, und wie nutzen Amazon und DHL 
+            diese als Marketing-Instrument?"
           </p>
           <div style={{ marginTop: '4rem', opacity: 0.5 }}>
             <span className="animate-pulse" style={{ color: '#ff6b35' }}>↓ Scroll um zu beginnen</span>
