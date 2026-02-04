@@ -19,89 +19,93 @@ export default function Experience({ onSectionChange }) {
   // Ref um die letzte Section zu speichern (verhindert unnötige Updates)
   const lastSectionIndex = useRef(0)
 
-  // PERFORMANCE FIX: Wiederverwendbare Color-Objekte (statt 120 Allocations/sec!)
+  // PERFORMANCE FIX: Wiederverwendbare Color-Objekte
   const tempColor1 = useMemo(() => new THREE.Color(), [])
   const tempColor2 = useMemo(() => new THREE.Color(), [])
   
   // Dramaturgische Kamera-Positionen
-  // SmartWarehouse Gruppe ist bei [0, 0, -20], also Z-Offset beachten!
-  // Relative Positionen in SmartWarehouse + (-20) = Absolute Position
+  // HINWEIS: SmartWarehouse Gruppe ist bei [0, 0, -20]
+  // Alle Ziele in SmartWarehouse müssen also -20 auf der Z-Achse addiert bekommen.
   const cameraPositions = useMemo(() => [
-    // AKT 1: DAS PROBLEM (0-3)
-    // [0] Prolog
-    {
+    // ════ AKT 1 (4 Sektionen) ════
+    // 1. Prolog
+    { 
       pos: [0, 3, 20], target: [0, 1, 0],
       ambient: 0.4, fog: { near: 15, far: 40 }, fogColor: '#1a1512'
     },
-    // [1] Das Chaos
-    {
+    // 2. Das Problem (Chaos)
+    { 
       pos: [4, 2, 10], target: [0, 1, 0],
       ambient: 0.5, fog: { near: 12, far: 35 }, fogColor: '#1f1815'
     },
-    // [2] Wendepunkt
-    {
+    // 3. Wendepunkt
+    { 
       pos: [0, 2.5, 6], target: [0, 2, -10],
       ambient: 0.6, fog: { near: 10, far: 40 }, fogColor: '#151a20'
     },
-    // [3] Methodik/Data Scan - DataTerminal bei absolut [0, 0, -14]
-    {
-      pos: [2, 2.5, -10], target: [0, 1.5, -14],
-      ambient: 0.7, fog: { near: 10, far: 40 }, fogColor: '#0f1520'
+    // 4. Daten-Scan (Methodik) – Research Terminal v2.0 am TransitionGate (Welt z ≈ -8)
+    { 
+      pos: [0, 2.5, -4], target: [0, 1, -8],
+      ambient: 0.6, fog: { near: 8, far: 30 }, fogColor: '#081015'
     },
-    // AKT 2: DIE TRANSFORMATION (4-8)
-    // [4] Eintritt Smart Warehouse
-    {
-      pos: [6, 2.5, -18], target: [0, 1.5, -22],
+
+    // ════ AKT 2 (5 Sektionen) ════
+    // 5. Eintritt Smart Warehouse
+    { 
+      pos: [0, 2.5, -5], target: [0, 1, -15],
+      ambient: 0.7, fog: { near: 15, far: 50 }, fogColor: '#0f1015'
+    },
+    // 6. IoT Technologien
+    { 
+      pos: [6, 2.5, -18], target: [2, 1.5, -22],
       ambient: 0.8, fog: { near: 15, far: 60 }, fogColor: '#0a0f15'
     },
-    // [5] IoT Technologien - Überblick über das Smart Warehouse
-    {
-      pos: [-6, 3, -22], target: [0, 1, -26],
-      ambient: 0.75, fog: { near: 12, far: 50 }, fogColor: '#0a1015'
-    },
-    // [6] Amazon - Links bei absolut [-6, 0, -27.5]
-    {
+    // 7. Amazon Zone
+    // Zone bei lokal [-6, 0, -7.5] -> Welt [-6, 0, -27.5]
+    { 
       pos: [-2, 2.5, -24], target: [-6, 1.5, -27.5],
-      ambient: 0.7, fog: { near: 10, far: 45 }, fogColor: '#1a1008'
+      ambient: 0.7, fog: { near: 12, far: 50 }, fogColor: '#1a1008'
     },
-    // [7] DHL - Rechts bei absolut [6, 0, -27.5]
-    {
+    // 8. DHL Zone
+    // Zone bei lokal [6, 0, -7.5] -> Welt [6, 0, -27.5]
+    { 
       pos: [2, 2.5, -24], target: [6, 1.5, -27.5],
-      ambient: 0.7, fog: { near: 10, far: 45 }, fogColor: '#1a1508'
+      ambient: 0.7, fog: { near: 12, far: 50 }, fogColor: '#1a1508'
     },
-    // [8] Balance/Nachhaltigkeit - IndustrialScale bei absolut [0, 0, -35]
-    {
-      pos: [4, 3, -32], target: [0, 2, -35],
-      ambient: 0.8, fog: { near: 12, far: 50 }, fogColor: '#081510'
+    // 9. Balance (Nachhaltigkeit) – Industriewaage hinter letztem Regal links (lokal Z -18 → Welt -38)
+    { 
+      pos: [-3, 3, -34], target: [-5, 1.5, -38],
+      ambient: 0.8, fog: { near: 20, far: 70 }, fogColor: '#081510'
     },
-    // AKT 3: DIE ERKENNTNIS (9-11)
-    // [9] System-Diagnose
-    {
-      pos: [-4, 3, -22], target: [0, 2, -24],
-      ambient: 0.5, fog: { near: 10, far: 40 }, fogColor: '#0a0a0f'
+
+    // ════ AKT 3 (3 Sektionen) ════
+    // 10. System-Diagnose (Warning) – hinter letztem Regal rechts (lokal Z -18 → Welt -38)
+    { 
+      pos: [3, 3, -34], target: [5, 1.5, -38],
+      ambient: 0.6, fog: { near: 15, far: 50 }, fogColor: '#0a0a0f'
     },
-    // [10] Kritische Reflexion - ResearchGap bei absolut [0, 0, -24]
-    {
-      pos: [3, 3, -21], target: [0, 2, -24],
-      ambient: 0.6, fog: { near: 10, far: 45 }, fogColor: '#0f0a0a'
+    // 11. Kritische Diskussion – Warning-Schild hinter letztem Regal
+    { 
+      pos: [4, 5, -32], target: [5, 1.5, -38],
+      ambient: 0.7, fog: { near: 25, far: 80 }, fogColor: '#080a12'
     },
-    // [11] Epilog/Ausblick - Vogelperspektive
-    {
-      pos: [0, 12, -25], target: [0, 0, -30],
-      ambient: 0.8, fog: { near: 25, far: 80 }, fogColor: '#080a12'
+    // 12. Epilog (Ausblick)
+    { 
+      pos: [0, 8, -15], target: [0, 0, -30],
+      ambient: 0.5, fog: { near: 20, far: 90 }, fogColor: '#050508'
     },
   ], [])
 
   useFrame((state, delta) => {
     const offset = scroll.offset
     
-    // 1. PERFORMANCE FIX: DOM direkt manipulieren
+    // 1. DOM direkt manipulieren
     const progressBar = document.getElementById('scroll-progress-bar')
     if (progressBar) {
       progressBar.style.width = `${offset * 100}%`
     }
 
-    // 2. PERFORMANCE FIX: Section State nur updaten wenn er sich ÄNDERT
+    // 2. Section State Update
     const sectionIndex = Math.min(
       Math.floor(offset * cameraPositions.length),
       cameraPositions.length - 1
@@ -122,7 +126,7 @@ export default function Experience({ onSectionChange }) {
     const next = cameraPositions[nextSection]
     const eased = easeInOutQuart(sectionProgress)
 
-    // Kamera Position & Target (direkte Manipulation war schon korrekt)
+    // Kamera Position & Target
     state.camera.position.x = THREE.MathUtils.lerp(current.pos[0], next.pos[0], eased)
     state.camera.position.y = THREE.MathUtils.lerp(current.pos[1], next.pos[1], eased)
     state.camera.position.z = THREE.MathUtils.lerp(current.pos[2], next.pos[2], eased)
@@ -132,51 +136,32 @@ export default function Experience({ onSectionChange }) {
     const targetZ = THREE.MathUtils.lerp(current.target[2], next.target[2], eased)
     state.camera.lookAt(targetX, targetY, targetZ)
 
-    // 3. PERFORMANCE FIX: Lichter & Fog direkt manipulieren (Kein State!)
-    
-    // Ambient Light
+    // Beleuchtung & Fog
     if (ambientLightRef.current) {
       const newAmbient = THREE.MathUtils.lerp(current.ambient, next.ambient, eased)
       ambientLightRef.current.intensity = newAmbient
     }
     
-    // Fog
     if (fogRef.current) {
       fogRef.current.near = THREE.MathUtils.lerp(current.fog.near, next.fog.near, eased)
       fogRef.current.far = THREE.MathUtils.lerp(current.fog.far, next.fog.far, eased)
 
-      // PERFORMANCE FIX: Wiederverwendbare Color-Objekte statt neue zu erstellen
       tempColor1.set(current.fogColor)
       tempColor2.set(next.fogColor)
       fogRef.current.color.lerpColors(tempColor1, tempColor2, eased)
-      // Hintergrundfarbe der Szene anpassen damit Fog passt
       scene.background = fogRef.current.color
     }
   })
 
-  // PERFORMANCE FIX: useScroll().offset nur 1x berechnen statt 3x
   const scrollOffset = scroll.offset
 
   return (
     <>
-      {/* Refs zuweisen statt State-Werte zu binden */}
       <ambientLight ref={ambientLightRef} intensity={0.1} />
-
-      <directionalLight
-        position={[10, 20, 10]}
-        intensity={1.2}
-        castShadow
-        shadow-mapSize={[512, 512]} // Reduziert auf 512 für Mobile Performance
-        shadow-bias={-0.0001}
-      />
-
+      <directionalLight position={[10, 20, 10]} intensity={1.2} castShadow shadow-bias={-0.0001} />
       <directionalLight position={[-10, 10, -5]} intensity={0.4} />
       <hemisphereLight args={['#b1e1ff', '#2d3748', 0.5]} />
-
-      {/* Fog mit Ref verbinden */}
       <fog ref={fogRef} attach="fog" args={['#0a0a0f', 5, 20]} />
-
-      {/* PERFORMANCE: Stars reduziert von 800 auf 400 */}
       <Stars radius={100} depth={50} count={400} factor={4} fade speed={0.5} />
 
       <group position={[0, 0, 0]}>

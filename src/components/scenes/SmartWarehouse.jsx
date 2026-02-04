@@ -476,118 +476,7 @@ function IndustrialScale({ position = [0, 0, 0] }) {
   )
 }
 
-// ==================== DATA TERMINAL (Kapitel 4 - Methodik) ====================
-function DataTerminal({ position = [0, 0, 0] }) {
-  const screenRef = useRef()
-  const scanLineRef = useRef()
-
-  // Animation: Scan-Linie und Bildschirm-Flackern
-  useFrame(({ clock }) => {
-    if (scanLineRef.current) {
-      const t = clock.getElapsedTime()
-      // Scan-Linie bewegt sich von oben nach unten
-      scanLineRef.current.position.y = 1.3 + Math.sin(t * 2) * 0.4
-    }
-    if (screenRef.current) {
-      const t = clock.getElapsedTime()
-      // Leichtes Flackern
-      screenRef.current.material.emissiveIntensity = 0.8 + Math.sin(t * 10) * 0.1
-    }
-  })
-
-  return (
-    <group position={position}>
-      {/* Terminal-Ständer */}
-      <mesh position={[0, 0.5, 0]}>
-        <cylinderGeometry args={[0.3, 0.4, 1, 16]} />
-        <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.3} />
-      </mesh>
-
-      {/* Standfuß */}
-      <mesh position={[0, 0.05, 0]}>
-        <cylinderGeometry args={[0.6, 0.6, 0.1, 16]} />
-        <meshStandardMaterial color="#2a2a2a" metalness={0.7} roughness={0.4} />
-      </mesh>
-
-      {/* Terminal-Gehäuse */}
-      <mesh position={[0, 1.3, 0]}>
-        <boxGeometry args={[1.2, 1.0, 0.3]} />
-        <meshStandardMaterial color="#0a0a0a" metalness={0.6} roughness={0.4} />
-      </mesh>
-
-      {/* Bildschirm */}
-      <mesh ref={screenRef} position={[0, 1.3, 0.16]}>
-        <planeGeometry args={[1.0, 0.8]} />
-        <meshStandardMaterial
-          color="#001020"
-          emissive="#00d4ff"
-          emissiveIntensity={0.8}
-        />
-      </mesh>
-
-      {/* Scan-Linie */}
-      <mesh ref={scanLineRef} position={[0, 1.3, 0.17]}>
-        <planeGeometry args={[1.0, 0.02]} />
-        <meshBasicMaterial color="#00ffff" transparent opacity={0.8} />
-      </mesh>
-
-      {/* PRISMA Text (simuliert durch leuchtende Boxen) */}
-      <group position={[0, 1.5, 0.17]}>
-        {/* Balken für "DATA" */}
-        {[-0.3, -0.1, 0.1, 0.3].map((x, i) => (
-          <mesh key={i} position={[x, 0, 0]}>
-            <boxGeometry args={[0.08, 0.15, 0.01]} />
-            <meshBasicMaterial color="#10b981" />
-          </mesh>
-        ))}
-      </group>
-
-      {/* Daten-Visualisierung (Balkendiagramm) */}
-      <group position={[-0.3, 1.1, 0.17]}>
-        {[0.6, 0.4, 0.8, 0.3, 0.7].map((h, i) => (
-          <mesh key={i} position={[i * 0.15, h * 0.15, 0]}>
-            <boxGeometry args={[0.1, h * 0.3, 0.01]} />
-            <meshBasicMaterial color={i % 2 === 0 ? "#00d4ff" : "#10b981"} />
-          </mesh>
-        ))}
-      </group>
-
-      {/* Leuchtender Ring um die Basis */}
-      <mesh position={[0, 0.12, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.65, 0.03, 8, 32]} />
-        <meshBasicMaterial color="#00d4ff" transparent opacity={0.6} />
-      </mesh>
-
-      {/* Holografische Projektion (kleines schwebendes Element) */}
-      <group position={[0, 2.2, 0]}>
-        <mesh rotation={[0, 0, Math.PI / 4]}>
-          <boxGeometry args={[0.3, 0.3, 0.3]} />
-          <meshStandardMaterial
-            color="#00d4ff"
-            emissive="#00d4ff"
-            emissiveIntensity={0.5}
-            transparent
-            opacity={0.6}
-            wireframe
-          />
-        </mesh>
-      </group>
-
-      {/* Spotlight */}
-      <spotLight
-        position={[0, 4, 2]}
-        target-position={[0, 1.3, 0]}
-        angle={0.4}
-        penumbra={0.5}
-        intensity={2}
-        color="#00d4ff"
-        castShadow={false}
-      />
-    </group>
-  )
-}
-
-// ==================== FORSCHUNGSLÜCKE (Reflexion) ====================
+// ==================== FORSCHUNGSLÜCKE (System-Diagnose / Kritische Diskussion) ====================
 function ResearchGap({ position = [0, 0, 0] }) {
   const questionRef = useRef()
   const signRef = useRef()
@@ -731,22 +620,14 @@ export default function SmartWarehouse({ scrollProgress }) {
       />
 
       {/* Case Study Showrooms */}
-      {/* Amazon Zone - Links (E-Mobility / Climate Pledge) */}
       <AmazonZone position={[-6, 0, -7.5]} />
-
-      {/* DHL Zone - Rechts (GoGreen) */}
       <DHLZone position={[6, 0, -7.5]} />
 
-      {/* Kapitel 4: Data Terminal - freistehend vor den Regalen bei Z = 6 */}
-      <DataTerminal position={[0, 0, 6]} />
+      {/* Kapitel 6: Industriewaage – hinter der letzten Regalreihe links, auf dem Boden (y = -0.05) */}
+      <IndustrialScale position={[-5, -0.05, -18]} />
 
-      {/* Kapitel 6: Balance/Nachhaltigkeit - Industriewaage isoliert bei Z = -15 */}
-      {/* Hinter der letzten Regalreihe, "gerahmt" von der Struktur */}
-      <IndustrialScale position={[0, 0, -15]} />
-
-      {/* Kapitel 10/11: Forschungslücke - hinter dem Förderband bei Z = -4 */}
-      {/* Das Förderband läuft bei Z = -5, also steht das Schild knapp dahinter */}
-      <ResearchGap position={[0, 0, -4]} />
+      {/* System-Diagnose (Warning) + Kritische Diskussion: hinter der letzten Regalreihe rechts */}
+      <ResearchGap position={[5, 0, -18]} />
     </group>
   )
 }
