@@ -25,23 +25,28 @@ export default function Experience({ onSectionChange }) {
   
   // Dramaturgische Kamera-Positionen
   // SmartWarehouse Gruppe ist bei [0, 0, -20], also Z-Offset beachten!
+  // Relative Positionen in SmartWarehouse + (-20) = Absolute Position
   const cameraPositions = useMemo(() => [
     // AKT 1: DAS PROBLEM (0-3)
+    // [0] Prolog
     {
       pos: [0, 3, 20], target: [0, 1, 0],
       ambient: 0.4, fog: { near: 15, far: 40 }, fogColor: '#1a1512'
     },
+    // [1] Das Chaos
     {
       pos: [4, 2, 10], target: [0, 1, 0],
       ambient: 0.5, fog: { near: 12, far: 35 }, fogColor: '#1f1815'
     },
+    // [2] Wendepunkt
     {
       pos: [0, 2.5, 6], target: [0, 2, -10],
       ambient: 0.6, fog: { near: 10, far: 40 }, fogColor: '#151a20'
     },
+    // [3] Methodik/Data Scan - DataTerminal bei absolut [0, 0, -14]
     {
-      pos: [0, 2.5, -5], target: [0, 1, -15],
-      ambient: 0.7, fog: { near: 15, far: 50 }, fogColor: '#0f1015'
+      pos: [2, 2.5, -10], target: [0, 1.5, -14],
+      ambient: 0.7, fog: { near: 10, far: 40 }, fogColor: '#0f1520'
     },
     // AKT 2: DIE TRANSFORMATION (4-8)
     // [4] Eintritt Smart Warehouse
@@ -64,25 +69,25 @@ export default function Experience({ onSectionChange }) {
       pos: [2, 2.5, -24], target: [6, 1.5, -27.5],
       ambient: 0.7, fog: { near: 10, far: 45 }, fogColor: '#1a1508'
     },
-    // [8] Balance/Nachhaltigkeit - Blick auf IndustrialScale bei Z = -30
+    // [8] Balance/Nachhaltigkeit - IndustrialScale bei absolut [0, 0, -35]
     {
-      pos: [6, 4, -28], target: [0, 2, -30],
-      ambient: 0.8, fog: { near: 15, far: 55 }, fogColor: '#081510'
+      pos: [4, 3, -32], target: [0, 2, -35],
+      ambient: 0.8, fog: { near: 12, far: 50 }, fogColor: '#081510'
     },
     // AKT 3: DIE ERKENNTNIS (9-11)
     // [9] System-Diagnose
     {
-      pos: [0, 3, -32], target: [0, 2, -36],
-      ambient: 0.5, fog: { near: 12, far: 45 }, fogColor: '#0a0a0f'
+      pos: [-4, 3, -22], target: [0, 2, -24],
+      ambient: 0.5, fog: { near: 10, far: 40 }, fogColor: '#0a0a0f'
     },
-    // [10] Kritische Reflexion - Blick auf ResearchGap bei Z = -38
+    // [10] Kritische Reflexion - ResearchGap bei absolut [0, 0, -24]
     {
-      pos: [-5, 3.5, -34], target: [0, 2.5, -38],
-      ambient: 0.6, fog: { near: 15, far: 50 }, fogColor: '#0f0a0a'
+      pos: [3, 3, -21], target: [0, 2, -24],
+      ambient: 0.6, fog: { near: 10, far: 45 }, fogColor: '#0f0a0a'
     },
     // [11] Epilog/Ausblick - Vogelperspektive
     {
-      pos: [0, 12, -30], target: [0, 0, -35],
+      pos: [0, 12, -25], target: [0, 0, -30],
       ambient: 0.8, fog: { near: 25, far: 80 }, fogColor: '#080a12'
     },
   ], [])
