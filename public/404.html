@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/Warehouse/" />
+    <script>
+      // Single Page App redirect for GitHub Pages
+      // Redirects all 404s to the main app
+      const path = window.location.pathname;
+      const repo = '/Warehouse';
+      if (path.startsWith(repo)) {
+        // Already on correct base, redirect to root
+        window.location.replace(repo + '/');
+      } else {
+        window.location.replace(repo + '/');
+      }
+    </script>
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/Warehouse/">Smart Warehouse Presentation</a>...</p>
+  </body>
+</html>

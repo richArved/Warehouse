@@ -23,57 +23,66 @@ export default function Experience({ onSectionChange }) {
   const tempColor1 = useMemo(() => new THREE.Color(), [])
   const tempColor2 = useMemo(() => new THREE.Color(), [])
   
-  // Dramaturgische Kamera-Positionen (Daten bleiben gleich)
+  // Dramaturgische Kamera-Positionen
+  // SmartWarehouse Gruppe ist bei [0, 0, -20], also Z-Offset beachten!
   const cameraPositions = useMemo(() => [
-    // AKT 1: DAS PROBLEM
-    { 
+    // AKT 1: DAS PROBLEM (0-3)
+    {
       pos: [0, 3, 20], target: [0, 1, 0],
       ambient: 0.4, fog: { near: 15, far: 40 }, fogColor: '#1a1512'
     },
-    { 
+    {
       pos: [4, 2, 10], target: [0, 1, 0],
       ambient: 0.5, fog: { near: 12, far: 35 }, fogColor: '#1f1815'
     },
-    { 
+    {
       pos: [0, 2.5, 6], target: [0, 2, -10],
       ambient: 0.6, fog: { near: 10, far: 40 }, fogColor: '#151a20'
     },
-    // AKT 2: DIE TRANSFORMATION
-    { 
+    {
       pos: [0, 2.5, -5], target: [0, 1, -15],
       ambient: 0.7, fog: { near: 15, far: 50 }, fogColor: '#0f1015'
     },
-    { 
-      pos: [6, 2.5, -18], target: [2, 1.5, -22],
+    // AKT 2: DIE TRANSFORMATION (4-8)
+    // [4] Eintritt Smart Warehouse
+    {
+      pos: [6, 2.5, -18], target: [0, 1.5, -22],
       ambient: 0.8, fog: { near: 15, far: 60 }, fogColor: '#0a0f15'
     },
-    { 
-      pos: [-8, 2.5, -25], target: [-5, 1, -28],
-      ambient: 0.7, fog: { near: 12, far: 50 }, fogColor: '#1a1008'
-    },
-    { 
-      pos: [8, 2.5, -25], target: [5, 1, -28],
-      ambient: 0.7, fog: { near: 12, far: 50 }, fogColor: '#1a1508'
-    },
-    { 
-      pos: [0, 10, -22], target: [0, 0, -25],
-      ambient: 0.8, fog: { near: 20, far: 70 }, fogColor: '#081510'
-    },
-    // AKT 3: DIE ERKENNTNIS
+    // [5] IoT Technologien - Überblick über das Smart Warehouse
     {
-      pos: [0, 3, -32], target: [0, 2, -38],
-      ambient: 0.6, fog: { near: 15, far: 50 }, fogColor: '#0a0a0f'
+      pos: [-6, 3, -22], target: [0, 1, -26],
+      ambient: 0.75, fog: { near: 12, far: 50 }, fogColor: '#0a1015'
     },
+    // [6] Amazon - Links bei absolut [-6, 0, -27.5]
     {
-      pos: [-6, 4, -28], target: [0, 1, -32],
-      ambient: 0.65, fog: { near: 18, far: 55 }, fogColor: '#0f0a0a'
+      pos: [-2, 2.5, -24], target: [-6, 1.5, -27.5],
+      ambient: 0.7, fog: { near: 10, far: 45 }, fogColor: '#1a1008'
     },
+    // [7] DHL - Rechts bei absolut [6, 0, -27.5]
     {
-      pos: [5, 3, -30], target: [0, 1.5, -35],
-      ambient: 0.7, fog: { near: 20, far: 60 }, fogColor: '#0a0a12'
+      pos: [2, 2.5, -24], target: [6, 1.5, -27.5],
+      ambient: 0.7, fog: { near: 10, far: 45 }, fogColor: '#1a1508'
     },
+    // [8] Balance/Nachhaltigkeit - Blick auf IndustrialScale bei Z = -30
     {
-      pos: [0, 8, -25], target: [0, 0, -30],
+      pos: [6, 4, -28], target: [0, 2, -30],
+      ambient: 0.8, fog: { near: 15, far: 55 }, fogColor: '#081510'
+    },
+    // AKT 3: DIE ERKENNTNIS (9-11)
+    // [9] System-Diagnose
+    {
+      pos: [0, 3, -32], target: [0, 2, -36],
+      ambient: 0.5, fog: { near: 12, far: 45 }, fogColor: '#0a0a0f'
+    },
+    // [10] Kritische Reflexion - Blick auf ResearchGap bei Z = -38
+    {
+      pos: [-5, 3.5, -34], target: [0, 2.5, -38],
+      ambient: 0.6, fog: { near: 15, far: 50 }, fogColor: '#0f0a0a'
+    },
+    // [11] Epilog/Ausblick - Vogelperspektive
+    {
+      pos: [0, 12, -30], target: [0, 0, -35],
       ambient: 0.8, fog: { near: 25, far: 80 }, fogColor: '#080a12'
     },
   ], [])
