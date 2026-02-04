@@ -73,8 +73,8 @@ export default function HtmlContent({ currentSection }) {
             color: '#ef4444',
             border: '1px solid rgba(239, 68, 68, 0.4)'
           }}>Das Problem</div>
-          <h2 className="title-lg" style={{ color: '#f8fafc', marginTop: '1rem' }}>
-            Die alte Welt der<br /><span style={{ color: '#ef4444' }}>Logistik</span>
+          <h2 className="title-lg" style={{ color: '#ef4444', marginTop: '1rem' }}>
+            Die alte Welt der<br />Logistik
           </h2>
           
           <ul className="feature-list" style={{ marginTop: '1.5rem' }}>
@@ -109,11 +109,11 @@ export default function HtmlContent({ currentSection }) {
           border: '1px solid rgba(0, 212, 255, 0.3)'
         }}>
           <h2 className="title-lg" style={{
-            color: '#f8fafc',
+            color: '#00d4ff',
             marginBottom: '1.5rem'
           }}>
             Doch was, wenn es<br />
-            <span className="highlight-tech">einen besseren Weg</span> gibt?
+            einen besseren Weg gibt?
           </h2>
           <p className="text-body" style={{ color: '#94a3b8' }}>
             Die digitale Transformation eröffnet neue Möglichkeiten.
@@ -268,8 +268,8 @@ export default function HtmlContent({ currentSection }) {
       <section className="section" style={{ height: '100vh' }}>
         <div className="content-card content-card--right" style={{ maxWidth: '550px' }}>
           <div className="tag tag--tech">Kapitel 3</div>
-          <h2 className="title-lg">
-            Willkommen im<br /><span className="highlight-tech">Smart Warehouse</span>
+          <h2 className="title-lg" style={{ color: '#00d4ff' }}>
+            Willkommen im<br />Smart Warehouse
           </h2>
           <p className="text-body">
             Smart Warehouses sind hochautomatisierte Lagereinrichtungen, die durch 
@@ -301,7 +301,7 @@ export default function HtmlContent({ currentSection }) {
       <section className="section" style={{ height: '100vh' }}>
         <div className="content-card content-card--left" style={{ maxWidth: '580px' }}>
           <div className="tag tag--tech">Kapitel 4</div>
-          <h2 className="title-lg">Die Technologie <span className="highlight-tech">erwacht</span></h2>
+          <h2 className="title-lg" style={{ color: '#00d4ff' }}>Die Technologie erwacht</h2>
           
           <div style={{ display: 'grid', gap: '1rem', marginTop: '1.5rem' }}>
             <TechItem icon="📡" title="RFID" desc="Echtzeit-Tracking mit 99,5% Genauigkeit" color="#00d4ff" />
@@ -331,7 +331,7 @@ export default function HtmlContent({ currentSection }) {
           borderLeft: '4px solid #ff9900'
         }}>
           <div className="tag tag--amazon">Case Study</div>
-          <h2 className="title-lg"><span className="highlight-amazon">Amazon</span></h2>
+          <h2 className="title-lg" style={{ color: '#ff9900' }}>Amazon</h2>
           <p className="text-body">
             The Climate Pledge: CO₂-neutral bis 2040 durch vernetzte, 
             datengetriebene Logistiksysteme.
@@ -370,7 +370,7 @@ export default function HtmlContent({ currentSection }) {
           borderLeft: '4px solid #ffcc00'
         }}>
           <div className="tag tag--dhl">Case Study</div>
-          <h2 className="title-lg"><span className="highlight-dhl">DHL GoGreen</span></h2>
+          <h2 className="title-lg" style={{ color: '#ffcc00' }}>DHL GoGreen</h2>
           <p className="text-body">
             Strategie 2030: "Green Logistics of Choice" – Nachhaltigkeit 
             als Wettbewerbsvorteil und Markendifferenzierer.
@@ -405,7 +405,7 @@ export default function HtmlContent({ currentSection }) {
       <section className="section" style={{ height: '100vh' }}>
         <div className="content-card content-card--right" style={{ maxWidth: '650px' }}>
           <div className="tag tag--green">Kapitel 6</div>
-          <h2 className="title-lg"><span className="highlight-green">Die Balance finden</span></h2>
+          <h2 className="title-lg" style={{ color: '#10b981' }}>Die Balance finden</h2>
           <p className="text-body" style={{ textAlign: 'center' }}>
             Triple Bottom Line: Nachhaltigkeit bedeutet das Gleichgewicht 
             zwischen drei Dimensionen.
@@ -523,7 +523,7 @@ export default function HtmlContent({ currentSection }) {
             color: '#94a3b8',
             border: '1px solid rgba(148, 163, 184, 0.3)'
           }}>Kritische Diskussion</div>
-          <h2 className="title-lg">Ein <span style={{ color: '#94a3b8' }}>ehrlicher Blick</span></h2>
+          <h2 className="title-lg" style={{ color: '#94a3b8' }}>Ein ehrlicher Blick</h2>
 
           <div style={{ marginTop: '1.5rem' }}>
             <CriticalPoint
@@ -550,8 +550,8 @@ export default function HtmlContent({ currentSection }) {
           background: 'rgba(15, 23, 42, 0.95)',
           border: '1px solid rgba(0, 212, 255, 0.3)'
         }}>
-          <h2 className="title-lg">
-            Die <span className="highlight-tech">Zukunft</span> hat begonnen
+          <h2 className="title-lg" style={{ color: '#00d4ff' }}>
+            Die Zukunft hat begonnen
           </h2>
           
           <p className="text-body" style={{ 
@@ -582,7 +582,7 @@ export default function HtmlContent({ currentSection }) {
           <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
             <p className="text-small">Arved von Witzleben</p>
             <p className="text-small" style={{ opacity: 0.6 }}>
-              BSP Business & Law School Berlin · Prof. Dr. Alexander Bretz · 2025
+              BSP Business & Law School Berlin · Prof. Dr. Alexander Bretz · 2025/2026
             </p>
           </div>
         </div>
