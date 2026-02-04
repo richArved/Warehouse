@@ -388,7 +388,7 @@ export default function HtmlContent() {
 
       {/* ═══════ SEKTION 9: NACHHALTIGKEIT / TRIPLE BOTTOM LINE ═══════ */}
       <section className="section" style={{ height: '100vh' }}>
-        <div className="content-card content-card--center" style={{ maxWidth: '650px' }}>
+        <div className="content-card content-card--right" style={{ maxWidth: '650px' }}>
           <div className="tag tag--green">Kapitel 6</div>
           <h2 className="title-lg"><span className="highlight-green">Die Balance finden</span></h2>
           <p className="text-body" style={{ textAlign: 'center' }}>
@@ -425,7 +425,7 @@ export default function HtmlContent() {
 
       {/* ═══════ SEKTION 10: SYSTEM-DIAGNOSE (Forschungslücken) ═══════ */}
       <section className="section" style={{ height: '100vh' }}>
-        <div className="content-card content-card--center" style={{
+        <div className="content-card content-card--left" style={{
           maxWidth: '650px',
           background: 'rgba(20, 10, 10, 0.98)',
           border: '2px solid rgba(239, 68, 68, 0.5)',
@@ -535,10 +535,10 @@ export default function HtmlContent() {
 
       {/* ═══════ SEKTION 12: EPILOG / FAZIT ═══════ */}
       <section className="section" style={{ height: '100vh' }}>
-        <div className="content-card content-card--center" style={{ 
+        <div className="content-card content-card--center" style={{
           textAlign: 'center',
           maxWidth: '700px',
-          background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(16, 185, 129, 0.1))',
+          background: 'rgba(15, 23, 42, 0.95)',
           border: '1px solid rgba(0, 212, 255, 0.3)'
         }}>
           <h2 className="title-lg">
