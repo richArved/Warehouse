@@ -288,6 +288,7 @@ function InstancedShelfSystem() {
     const boxes = []
 
     // Regal-Definitionen: position, lean, items
+    // Regal bei [0, 0, -5] entfernt – stand vor dem TransitionGate
     const shelves = [
       { pos: [-7, 0, -4], lean: 0.03, items: [[-0.5, 0.55, 0], [0.4, 0.55, 0], [0, 2.55, 0]] },
       { pos: [-7, 0, 0], lean: -0.02, items: [[0, 0.55, 0]] },
@@ -295,7 +296,6 @@ function InstancedShelfSystem() {
       { pos: [7, 0, -4], lean: -0.04, items: [[-0.3, 0.55, 0], [0, 1.55, 0]] },
       { pos: [7, 0, 0], lean: 0.02, items: [[0.2, 0.55, 0]] },
       { pos: [7, 0, 4], lean: -0.03, items: [] },
-      { pos: [0, 0, -5], lean: 0.02, items: [[-0.4, 0.55, 0], [0, 1.55, 0]] },
     ]
 
     shelves.forEach(shelf => {
