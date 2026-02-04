@@ -10,11 +10,19 @@ import DHLZone from '../models/DHLZone'
  * Mit Instancing für Regale, Paletten, Kartons + Förderbänder + Gabelstapler
  */
 
+// Model paths with base URL for GitHub Pages compatibility
+const MODEL_PATH = {
+  box: `${import.meta.env.BASE_URL}models/cardboard_box.glb`,
+  shelf: `${import.meta.env.BASE_URL}models/warehouse_shelving_3_low_poly.glb`,
+  pallet: `${import.meta.env.BASE_URL}models/wooden_pallet_low-poly.glb`,
+  forklift: `${import.meta.env.BASE_URL}models/forklift_truck.glb`,
+}
+
 // Preload Models für bessere Performance
-useGLTF.preload('/models/cardboard_box.glb')
-useGLTF.preload('/models/warehouse_shelving_3_low_poly.glb')
-useGLTF.preload('/models/wooden_pallet_low-poly.glb')
-useGLTF.preload('/models/forklift_truck.glb')
+useGLTF.preload(MODEL_PATH.box)
+useGLTF.preload(MODEL_PATH.shelf)
+useGLTF.preload(MODEL_PATH.pallet)
+useGLTF.preload(MODEL_PATH.forklift)
 
 // ==================== MODERN WAREHOUSE ROOM (CODE) ====================
 function ModernWarehouseRoom() {
@@ -107,11 +115,11 @@ function isInExclusionZone(x, z) {
 function ShelfSystem() {
   // 1. ALLE MODELLE LADEN
   // Kartons
-  const { nodes: boxNodes, materials: boxMaterials } = useGLTF('/models/cardboard_box.glb')
+  const { nodes: boxNodes, materials: boxMaterials } = useGLTF(MODEL_PATH.box)
   // Regale
-  const { nodes: rackNodes, materials: rackMaterials } = useGLTF('/models/warehouse_shelving_3_low_poly.glb')
+  const { nodes: rackNodes, materials: rackMaterials } = useGLTF(MODEL_PATH.shelf)
   // Paletten
-  const { nodes: palletNodes, materials: palletMaterials } = useGLTF('/models/wooden_pallet_low-poly.glb')
+  const { nodes: palletNodes, materials: palletMaterials } = useGLTF(MODEL_PATH.pallet)
 
   const { racks, goods, pallets } = useMemo(() => {
     const racks = []
@@ -249,7 +257,7 @@ function ConveyorBelt({
   const PACKAGE_COUNT = 6
 
   // 1. Modell laden
-  const { nodes, materials } = useGLTF('/models/cardboard_box.glb')
+  const { nodes, materials } = useGLTF(MODEL_PATH.box)
 
   const boxGeometry = nodes.CardboardBox_LP_lambert1_0?.geometry || Object.values(nodes).find(n => n.isMesh)?.geometry
   const boxMaterial = materials.lambert1 || Object.values(materials)[0]
@@ -336,7 +344,7 @@ function ConveyorBelt({
 }
 // ==================== GABELSTAPLER ====================
 function SmartForklift({ position, rotation = [0, 0, 0] }) {
-  const { scene } = useGLTF('/models/forklift_truck.glb')
+  const { scene } = useGLTF(MODEL_PATH.forklift)
   const clone = useMemo(() => scene.clone(), [scene])
 
   return (
